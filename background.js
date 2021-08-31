@@ -1,5 +1,21 @@
 function start() {
-  
+  function toFixed(x) {
+    if (Math.abs(x) < 1.0) {
+      var e = parseInt(x.toString().split('e-')[1]);
+      if (e) {
+          x *= Math.pow(10,e-1);
+          x = '0.' + (new Array(e)).join('0') + x.toString().substring(2);
+      }
+    } else {
+      var e = parseInt(x.toString().split('+')[1]);
+      if (e > 20) {
+          e -= 20;
+          x /= Math.pow(10,e);
+          x += (new Array(e+1)).join('0');
+      }
+    }
+    return x;
+  }
   // const div = document.getElementById('tradingview_2808a')
   const div2 = document.getElementsByTagName('iframe')
   // console.log('div', div);
@@ -25,7 +41,7 @@ function start() {
   console.log('arrayOfLines', arrayOfLines);
 
   const amountLine = arrayOfLines[1]
-  const amountNumber = parseFloat(amountLine.replace(',','').split(" ")[1])
+  const amountNumber = parseFloat(amountLine.split(',').join('').split(" ")[1])
   console.log('amountNumber', amountNumber);
 
   const priceLine =  arrayOfLines[2]
@@ -35,7 +51,7 @@ function start() {
   // elmnt[0].innerText ='culito'
   const pricePerToken = priceNumber / amountNumber
   console.log('pricePerToken', pricePerToken);
-  elmnt[0].innerText = pricePerToken
+  elmnt[0].innerText = toFixed(pricePerToken)
 
   }
   
