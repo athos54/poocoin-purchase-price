@@ -41,11 +41,11 @@ function start() {
   console.log('arrayOfLines', arrayOfLines);
 
   const amountLine = arrayOfLines[1]
-  const amountNumber = parseFloat(amountLine.split(',').join('').split(" ")[1])
+  const amountNumber = parseFloat(amountLine.split('.')[0].split(',').join('').split(" ")[1])
   console.log('amountNumber', amountNumber);
 
   const priceLine =  arrayOfLines[2]
-  const priceNumber = parseFloat(priceLine.split('$')[1])
+  const priceNumber = parseFloat(priceLine.split(',').join('').split('$')[1])
   console.log('priceNumber', priceNumber);
   // const amount = 
   // elmnt[0].innerText ='culito'
